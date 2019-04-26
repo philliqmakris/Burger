@@ -27,6 +27,7 @@ input {
 
 header {
     background-color: black;
+    
 }
 
 #cont1 {
@@ -35,6 +36,8 @@ header {
     background-color: black;
     border-radius:.99rem!important;
     text-align: center;
+    margin-left: 160px;
+    border-color: orange;
     
 }
 
@@ -47,6 +50,8 @@ header {
     margin-top: 0px;
     border-radius:.99rem!important;
     text-align: center;
+    margin-left: 160px;
+    border-color: orange;
 }
 
 .inputTitle {
@@ -57,6 +62,9 @@ header {
 #burgerGif {
     height: 250px;
     width: 500px;
+    border-style: solid;
+    border-color: orange;
+    border-radius:.99rem!important;
 }
 
 hr {
@@ -76,6 +84,8 @@ hr {
     border-radius:.99rem!important;
     text-align: center;
     color: orange;
+    margin-left: 160px;
+    border-color: orange;
 
 }
 
@@ -85,4 +95,14 @@ h2 {
 
 li {
     font-size: 30px;
+    color:rgb(240, 240, 240);
 }
+
+#tasty {
+    margin-left: 580px;
+    border-style: solid;
+    border-color: black;
+    border-radius:.99rem!important;
+    
+}
+
