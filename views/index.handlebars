@@ -46,7 +46,9 @@
             <hr>
             <ul>
                 <li>
+                    {{#if sleepy}}
                     {{this.burger_name}}
+                    {{/if}}
                 </li>
 
             </ul>
@@ -56,11 +58,8 @@
 
     <img id="tasty" src="https://media.giphy.com/media/HQ2Slp9yEkX72/giphy.gif">
 
+    <button class="delete-burger" data-id="{{this.id}}">Delete Burgers</button>
+
 
 </div>
 
-<!--writing script here since instrutions dont say to create js file in public folder-->
-<script>
-
-
-</script>

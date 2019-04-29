@@ -23,17 +23,16 @@ $(function () {
   });
 
   $("#eatButton").on("click", function (event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
+    
 
-    var newBurger = {
+    var eaten = {
       name: $("#ca").val().trim(),
     };
 
     // Send the POST request.
     $.ajax("/api/newBurger", {
       type: "POST",
-      data: newBurger
+      data: eaten
     }).then(
       function (pumpkin) {
         console.log("created new burger", pumpkin);
@@ -42,6 +41,22 @@ $(function () {
       }
     );
   });
+
+  $(".delete-burger").on("click", function(event) {
+    var id = $(this).data("id");
+
+    // Send the DELETE request.
+    $.ajax("/api/burgers/" + id, {
+      type: "DELETE"
+    }).then(
+      function() {
+        console.log("deleted burger", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
 
 
 
