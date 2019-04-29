@@ -1,5 +1,8 @@
 var mysql = require('mysql'); //include mysql, installed with npm
 //create connection object, set connection params
+if (process.env.JAWSDB_URL) {
+    connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
 var myConn = mysql.createConnection({
     host: 'localhost',
     database: 'burgers',
