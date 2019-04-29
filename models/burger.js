@@ -1,60 +1,24 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(function() {
-  $(".eat-burger").on("click", function(event) {
-    var id = $(this).data("id");
-    var newSleep = $(this).data("newsleep");
+// Import the ORM to create functions that will interact with the database.
+var orm = require("../config/orm.js");
 
-    var newSleepState = {
-      sleepy: newSleep
-    };
+var burger = {
+    all: function (cb) {
+        orm.all("burgers", function (res) {
+            cb(res);
+        });
+    },
+    // The variables cols and vals are arrays.
+    create: function (cols, vals, cb) {
+        orm.create("burgers", cols, vals, function (res) {
+            cb(res);
+        });
+    },
+    update: function (objColVals, condition, cb) {
+        orm.update("burgers", objColVals, condition, function (res) {
+            cb(res);
+        });
+    }
+};
 
-    // Send the PUT request.
-    $.ajax("/api/cats/" + id, {
-      type: "PUT",
-      data: newSleepState
-    }).then(
-      function() {
-        console.log("changed sleep to", newSleep);
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
-  });
-
-  $(".create-form").on("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
-
-    var newCat = {
-      name: $("#ca").val().trim(),
-      sleepy: $("[name=sleepy]:checked").val().trim()
-    };
-
-    // Send the POST request.
-    $.ajax("/api/cats", {
-      type: "POST",
-      data: newCat
-    }).then(
-      function() {
-        console.log("created new cat");
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
-  });
-
-  $(".delete-cat").on("click", function(event) {
-    var id = $(this).data("id");
-
-    // Send the DELETE request.
-    $.ajax("/api/cats/" + id, {
-      type: "DELETE"
-    }).then(
-      function() {
-        console.log("deleted cat", id);
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
-  });
-});
+// Export the database functions for the controller (catsController.js).
+module.exports = burger;

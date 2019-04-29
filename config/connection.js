@@ -1,28 +1,36 @@
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    database : 'burger',
-    user     : 'root',
-    password : 'password',
+var mysql = require('mysql'); //include mysql, installed with npm
+//create connection object, set connection params
+var myConn = mysql.createConnection({
+    host: 'localhost',
+    database: 'burgers',
+    user: 'root',
+    password: 'password',
 });
 
-connection.connect(function(err) {
+//try to connect to object
+myConn.connect(function (err) {
+    //if error console log and quit
     if (err) {
         console.error('Error connecting: ' + err.stack);
         return;
     }
-
-    console.log('Connected as id ' + connection.threadId);
+    //on success console log
+    console.log('Connected as id ' + myConn.threadId);
 });
 
-connection.query('SELECT * FROM burger', function (error, results, fields) {
-    if (error)
-        throw error;
+//return mysql connection so it can be used in the file that called it
+module.exports = myConn;
 
-    results.forEach(result => {
-        console.log(result);
+/*connection.query = function(queryString){
+    myConn.query(queryString, function (error, results, fields) {
+        if (error)
+            throw error;
+
+        results.forEach(result => {
+            console.log(result);
+        });
     });
-});
+}*/
 
-connection.end();
+
 
