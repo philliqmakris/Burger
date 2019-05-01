@@ -6,7 +6,7 @@ $(function () {
     event.preventDefault();
 
     var newBurger = {
-      name: $("#ca").val().trim(),
+      name: $("#ca").val().trim()
     };
 
     // Send the POST request.
@@ -22,34 +22,35 @@ $(function () {
     );
   });
 
-  $("#eatButton").on("click", function (event) {
-    
+  $(".eatButton").on("click", function (event) {
 
+    
     var eaten = {
-      name: $("#ca").val().trim(),
+      id: $(this).parent().children(".burgerId").text(),
+      devoured: true
     };
 
     // Send the POST request.
-    $.ajax("/api/newBurger", {
+    $.ajax("/api/burgers", {
       type: "POST",
       data: eaten
     }).then(
       function (pumpkin) {
-        console.log("created new burger", pumpkin);
+        console.log("You ate a burger", pumpkin);
         // Reload the page to get the updated list
         location.reload();
       }
     );
   });
 
-  $(".delete-burger").on("click", function(event) {
+  $(".delete-burger").on("click", function (event) {
     var id = $(this).data("id");
 
     // Send the DELETE request.
     $.ajax("/api/burgers/" + id, {
       type: "DELETE"
     }).then(
-      function() {
+      function () {
         console.log("deleted burger", id);
         // Reload the page to get the updated list
         location.reload();

@@ -30,13 +30,15 @@
 
             <ul>
                 {{#each burgers}}
+                {{#unless this.devoured}}
 
                 <li>{{this.burger_name}}
-                    {{this.id}}
-                    <button id="eatButton">Eat Burger</button>
+                    <span class="burgerId">{{this.id}}</span>
+                    <button class="eatButton">Eat Burger</button>
                 </li>
-
+                {{/unless}}
                 {{/each}}
+                
             </ul>
         </div>
 
@@ -45,11 +47,14 @@
             <h2>Eaten Burgers</h2>
             <hr>
             <ul>
+                {{#each burgers}}
                 <li>
-                    {{#if sleepy}}
+
+                    {{#if this.devoured}}
                     {{this.burger_name}}
                     {{/if}}
                 </li>
+                {{/each}}
 
             </ul>
         </div>
