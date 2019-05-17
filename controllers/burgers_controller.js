@@ -45,10 +45,10 @@ router.post("/api/burgers", function (req, res) {
   });
 });
 
-router.delete("/api/burgers/:id", function (req, res) {
-  var condition = "id = " + req.params.id;
+router.delete("/api/burgers/deleteAll", function (req, res) {
+    var condition = "WHERE 'id' > 0";
 
-  burgers.delete(condition, function (result) {
+  burgers.update(condition, function (result) {
     if (result.affectedRows == 0) {
       // If no rows were changed, then the ID must not exist, so 404
       return res.status(404).end();
