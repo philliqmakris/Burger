@@ -1,15 +1,15 @@
 var mysql = require('mysql'); //include mysql, installed with npm
 //create connection object, set connection params
-if (process.env.JAWSDB_URL) {
+/*if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
-} else {
+} else {*/
     var myConn = mysql.createConnection({
         host: 'z37udk8g6jiaqcbx.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
         database: 'o4o9s9ijswo1qzvg',
         user: 'x7g8oykg03kh4a3r',
         password: 's8ixaqivhhd97c2q',
     });
-}
+//}
 
     //try to connect to object
     myConn.connect(function (err) {
